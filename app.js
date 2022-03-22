@@ -25,8 +25,17 @@ const postSchema = {
     postHowToApply: String,
     postExpectedSalary: String
 }
+const postArtsSchema = {
+    postTitle: String,
+    postDetails: String,
+    postEligibility: String,
+    postAdmission: String,
+    postScope: String,
+    postJob: String
+}
 // create one mongoose model
 const Post = mongoose.model("Post", postSchema);
+const PostArt = mongoose.model("PostArt", postArtsSchema);
 
 app.get("/compose", function (req, res) {
     res.render("compose");
@@ -49,11 +58,43 @@ app.post("/compose", function (req, res) {
     });
 
 })
+
+
+// compose Arts Section------
+app.get("/composeArts", function (req, res) {
+    res.render("composeArts");
+});
+app.post("/composeArts", function (req, res) {
+// create one new post with small 'p'--> and it access all the compose form
+    const postArt = new PostArt({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    // then just simply save the post without any error .
+    // and redirect to home page for showing
+    postArt.save(function (err) {
+        if (!err) {
+            res.redirect("/arts");
+        }
+    });
+
+})
 // In home page we must try to find all the posts and then render home page
 app.get("/", function (req, res) {
     Post.find({}, function (err, posts) {
         res.render("index", {
             posts: posts
+        });
+    });
+});
+app.get("/arts", function (req, res) {
+    PostArt.find({}, function (err, postArts) {
+        res.render("arts", {
+            postArts: postArts
         });
     });
 });
@@ -67,6 +108,23 @@ app.get("/posts/:postId", function (req, res) {
             postEligibility: post.postEligibility,
             postHowToApply: post.postHowToApply,
             postExpectedSalary: post.postExpectedSalary
+        });
+    });
+
+});
+
+// for postArts render single page----
+app.get("/postArts/:postId", function (req, res) {
+    // we use id for access all new post in single page
+    const requestPostId = req.params.postId;
+    PostArt.findOne({ _id: requestPostId }, function (err, post) {
+        res.render("postArts", {
+            postTitle: post.postTitle,
+            postDetails: post.postDetails,
+            postEligibility: post.postEligibility,
+            postAdmission: post.postAdmission,
+            postScope: post.postScope,
+            postJob: post.postJob
         });
     });
 
