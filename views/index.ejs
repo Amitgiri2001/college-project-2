@@ -32,7 +32,8 @@
 
     <!-- New post item code -->
     <div class="newItems">
-
+<!-- ************************** -->
+<% if (Array.isArray(posts)) {%>
         <% posts.forEach(function(post){ %>
             <a href="/posts/<%=post._id%>">
                 <h1>
@@ -65,7 +66,7 @@
                 <%=post.postExpectedSalary %>
             </p>
 
-            <%}) %>
+            <%});} %>
 
 
     </div>
