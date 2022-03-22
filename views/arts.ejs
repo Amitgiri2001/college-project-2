@@ -1,52 +1,56 @@
 <%- include("partial/header") -%>
+    <div class="header">
+        <h1>Arts</h1>
+        <p>Some Quotation</p>
+    </div>
     <div class="newItems">
-       
+        <div class="compose">
+            <button type="submit" class="button"><a href="/composeArts"> Compose New</a></button>
+        </div>
         <% if (Array.isArray(postArts)) {%>
-                <% postArts.forEach(function(post){ %>
-                    <a href="/postArts/<%=post._id%>">
-                        <h1>
-                            <%=post.postTitle %>
-                        </h1>
-                    </a>
-                    <h3>
-                        Detail’s:
-                    </h3>
-                    <p>
-                        <%=post.postDetails.substring(0,200) %>
+            <% postArts.forEach(function(post){ %>
+                <a href="/postArts/<%=post._id%>">
+                    <h1>
+                        <%=post.postTitle %>
+                    </h1>
+                </a>
+                <h3>
+                    Detail’s:
+                </h3>
+                <p>
+                    <%=post.postDetails.substring(0,200) %>
                         <a href="/postArts/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        Eligibility:
-                    </h3>
-                    <p>
-                        <%=post.postEligibility.substring(0,200) %>
+                </p>
+                <h3>
+                    Eligibility:
+                </h3>
+                <p>
+                    <%=post.postEligibility.substring(0,200) %>
                         <a href="/postArts/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        How to apply:
-                    </h3>
-                    <p>
-                        <%=post.postAdmission.substring(0,200) %>
+                </p>
+                <h3>
+                    Admission:
+                </h3>
+                <p>
+                    <%=post.postAdmission.substring(0,200) %>
+                </p>
+                <h3>
+                    Scope:
+                </h3>
+                <p>
+                    <%=post.postScope.substring(0,200) %>
+                </p>
+                <h3>
+                    Job:
+                </h3>
+                <p class="last">
+                    <%=post.postJob.substring(0,200) %>
                         <a href="/postArts/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        Scope:
-                    </h3>
-                    <p>
-                        <%=post.postScope.substring(0,200) %>
-                        <a href="/postArts/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        Job:
-                    </h3>
-                    <p>
-                        <%=post.postJob.substring(0,200) %>
-                        <a href="/postArts/<%=post._id%>">Read More...</a>
-                    </p>
-        
-                    <%});} %>
-        
-            </div>
-        </body>
+                </p>
 
-        </html>
+                <%});} %>
+
+    </div>
+    </body>
+
+    </html>

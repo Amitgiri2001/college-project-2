@@ -4,7 +4,7 @@
   <!-- create one simple form using Bootstrap -->
   <div class="container">
     <!-- we use form action "/compose" because we want to post something in our form -->
-    <form action="/compose" method="post">
+    <form action="/composeMed" method="post">
       <div class="form-group">
         <label>Title</label>
         <!-- every input must have a name for future access -->
@@ -13,10 +13,12 @@
         <textarea class="form-control" name="postDetails" rows="3"></textarea>
         <label>Eligibility:</label>
         <textarea class="form-control" name="postEligibility" rows="3"></textarea>
-        <label> How to apply:</label>
-        <textarea class="form-control" name="postHowToApply" rows="3"></textarea>
-        <label> Expected Salary:</label>
-        <textarea class="form-control" name="postExpectedSalary" rows="3"></textarea>
+        <label> Admission:</label>
+        <textarea class="form-control" name="postAdmission" rows="3"></textarea>
+        <label> Scope:</label>
+        <textarea class="form-control" name="postScope" rows="3"></textarea>
+        <label> Job:</label>
+        <textarea class="form-control" name="postJob" rows="1"></textarea>
       </div>
       <!-- button type must be submit for submit anything  -->
       <button type="submit" class="btn btn-primary">Publish</button>

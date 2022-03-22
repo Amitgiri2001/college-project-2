@@ -1,0 +1,26 @@
+<%- include("partial/header") -%>
+
+  <h1 style="margin-top: 7rem; text-align: center;">Compose</h1>
+  <!-- create one simple form using Bootstrap -->
+  <div class="container">
+    <!-- we use form action "/compose" because we want to post something in our form -->
+    <form action="/composeEng" method="post">
+      <div class="form-group">
+        <label>Title</label>
+        <!-- every input must have a name for future access -->
+        <input type="text" name="postTitle" id="" class="form-control">
+        <label>Details</label>
+        <textarea class="form-control" name="postDetails" rows="3"></textarea>
+        <label>Eligibility:</label>
+        <textarea class="form-control" name="postEligibility" rows="3"></textarea>
+        <label> Admission:</label>
+        <textarea class="form-control" name="postAdmission" rows="3"></textarea>
+        <label> Scope:</label>
+        <textarea class="form-control" name="postScope" rows="3"></textarea>
+        <label> Job:</label>
+        <textarea class="form-control" name="postJob" rows="1"></textarea>
+      </div>
+      <!-- button type must be submit for submit anything  -->
+      <button type="submit" class="btn btn-primary">Publish</button>
+    </form>
+  </div>

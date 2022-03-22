@@ -30,46 +30,6 @@
         </div>
     </div>
 
-    <!-- New post item code -->
-    <div class="newItems">
-<!-- ************************** -->
-<% if (Array.isArray(posts)) {%>
-        <% posts.forEach(function(post){ %>
-            <a href="/posts/<%=post._id%>">
-                <h1>
-                    <%=post.postTitle %>
-                </h1>
-            </a>
-            <h2>
-                Detail’s:
-            </h2>
-            <p>
-                <%=post.postDetails.substring(0,200) %>
-                <a href="/posts/<%=post._id%>">Read More...</a>
-            </p>
-            <!-- <h2>
-                Eligibility:
-            </h2>
-            <p>
-                <%=post.postEligibility %>
-            </p>
-            <h2>
-                How to apply:
-            </h2>
-            <p>
-                <%=post.postHowToApply %>
-            </p> -->
-            <h2>
-                Expected Salary:
-            </h2>
-            <p>
-                <%=post.postExpectedSalary %>
-            </p>
-
-            <%});} %>
-
-
-    </div>
 
     </body>
 

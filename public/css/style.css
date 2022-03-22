@@ -140,5 +140,47 @@ a.navbar-brand {
 
 /* style for new Items */
 .newItems{
-  margin: 10% 14%;
+  margin: 5% 14%;
+}
+.newItems p.last{
+  margin-bottom: 7rem;
+}
+
+/* ---------headings of every stream page----------- */
+.header {
+  margin-top: 120px;
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+.header h1{
+  font-size: 60px;
+  font-weight: 900;
+}
+
+/*---------- compose button styling------- */
+.button a:link {
+  text-decoration: none;
+}
+.button {
+  padding: 10px 24px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+  border: 2px solid green;
+}
+
+.button a:hover {
+  text-decoration: none;
+  color: white;
+}
+.button:hover {
+  background-color: #97e79a; /* Green */
+}
+.compose{
+  position: absolute;
+  right: 3rem;
 }

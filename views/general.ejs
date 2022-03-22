@@ -1,6 +1,12 @@
 <%- include("partial/header") -%>
+    <<div class="header">
+        <h1>General</h1>
+        <p>Some Quotation</p>
+    </div>
     <div class="newItems">
-       
+        <div class="compose">
+            <button type="submit" class="button"><a href="/composeGen"> Compose New</a></button>
+        </div>
         <% if (Array.isArray(postGens)) {%>
                 <% postGens.forEach(function(post){ %>
                     <a href="/postGens/<%=post._id%>">
@@ -23,23 +29,21 @@
                         <a href="/postGens/<%=post._id%>">Read More...</a>
                     </p>
                     <h3>
-                        How to apply:
+                        Admission:
                     </h3>
                     <p>
                         <%=post.postAdmission.substring(0,200) %>
-                        <a href="/postGens/<%=post._id%>">Read More...</a>
                     </p>
                     <h3>
                         Scope:
                     </h3>
                     <p>
                         <%=post.postScope.substring(0,200) %>
-                        <a href="/postGens/<%=post._id%>">Read More...</a>
                     </p>
                     <h3>
                         Job:
                     </h3>
-                    <p>
+                    <p class="last">
                         <%=post.postJob.substring(0,200) %>
                         <a href="/postGens/<%=post._id%>">Read More...</a>
                     </p>

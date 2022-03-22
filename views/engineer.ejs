@@ -1,15 +1,15 @@
 <%- include("partial/header") -%>
 <div class="header">
-    <h1>Government Jobs</h1>
+    <h1>Engineering</h1>
     <p>Some Quotation</p>
 </div>
 <div class="newItems">
     <div class="compose">
-        <button type="submit" class="button"><a href="/composeSci"> Compose New</a></button>
+        <button type="submit" class="button"><a href="/composeEng"> Compose New</a></button>
     </div>
-        <% if (Array.isArray(postScis)) {%>
-                <% postScis.forEach(function(post){ %>
-                    <a href="/postScis/<%=post._id%>">
+        <% if (Array.isArray(postEngs)) {%>
+                <% postEngs.forEach(function(post){ %>
+                    <a href="/postEngs/<%=post._id%>">
                         <h1>
                             <%=post.postTitle %>
                         </h1>
@@ -19,14 +19,14 @@
                     </h3>
                     <p>
                         <%=post.postDetails.substring(0,200) %>
-                        <a href="/postScis/<%=post._id%>">Read More...</a>
+                        <a href="/postEngs/<%=post._id%>">Read More...</a>
                     </p>
                     <h3>
                         Eligibility:
                     </h3>
                     <p>
                         <%=post.postEligibility.substring(0,200) %>
-                        <a href="/postScis/<%=post._id%>">Read More...</a>
+                        <a href="/postEngs/<%=post._id%>">Read More...</a>
                     </p>
                     <h3>
                         Admission:
@@ -43,13 +43,12 @@
                     <h3>
                         Job:
                     </h3>
-                    <p class="last">
+                    <p>
                         <%=post.postJob.substring(0,200) %>
-                        <a href="/postScis/<%=post._id%>">Read More...</a>
-                    </p >
+                        <a href="/postEngs/<%=post._id%>">Read More...</a>
+                    </p class="last">
         
                     <%});} %>
-        
         
             </div>
         </body>

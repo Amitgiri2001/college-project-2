@@ -16,15 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // for use public folder only---for style.css and all others
 app.use(express.static(__dirname + '/public'));
 
-// let posts=[];
-// create one new postSchema for create new post
-const postSchema = {
-    postTitle: String,
-    postDetails: String,
-    postEligibility: String,
-    postHowToApply: String,
-    postExpectedSalary: String
-}
+
 const postArtsSchema = {
     postTitle: String,
     postDetails: String,
@@ -34,43 +26,24 @@ const postArtsSchema = {
     postJob: String
 }
 // create one mongoose model
-const Post = mongoose.model("Post", postSchema);
+
 const PostArt = mongoose.model("PostArt", postArtsSchema);
 const PostSci = mongoose.model("PostSci", postArtsSchema);
 const PostCom = mongoose.model("PostCom", postArtsSchema);
 const PostGen = mongoose.model("PostGen", postArtsSchema);
+const PostMed = mongoose.model("PostMed", postArtsSchema);
+const PostEng = mongoose.model("PostEng", postArtsSchema);
 
 
 
 // --------------Create every Compose page-----------------
-app.get("/compose", function (req, res) {
-    res.render("compose");
-});
-app.post("/compose", function (req, res) {
-// create one new post with small 'p'--> and it access all the compose form
-    const post = new Post({
-        postTitle: req.body.postTitle,
-        postDetails: req.body.postDetails,
-        postEligibility: req.body.postEligibility,
-        postHowToApply: req.body.postHowToApply,
-        postExpectedSalary: req.body.postExpectedSalary
-    });
-    // then just simply save the post without any error .
-    // and redirect to home page for showing
-    post.save(function (err) {
-        if (!err) {
-            res.redirect("/");
-        }
-    });
-
-})
 
 // compose Arts Section
 app.get("/composeArts", function (req, res) {
     res.render("composeArts");
 });
 app.post("/composeArts", function (req, res) {
-
+// create one new post with small 'p'--> and it access all the compose form
     const postArt = new PostArt({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
@@ -79,6 +52,8 @@ app.post("/composeArts", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+      // then just simply save the post without any error .
+    // and redirect to home page for showing
         postArt.save(function (err) {
         if (!err) {
             res.redirect("/arts");
@@ -150,15 +125,61 @@ app.post("/composeGen", function (req, res) {
     });
 
 })
+//create compose General Section-----
+app.get("/composeMed", function (req, res) {
+    res.render("composeMed");
+});
+app.post("/composeMed", function (req, res) {
+
+    const postMed = new PostMed({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    postMed.save(function (err) {
+        if (!err) {
+            res.redirect("/medical");
+        }
+    });
+
+})
+//create compose Engineering Section-----
+app.get("/composeEng", function (req, res) {
+    res.render("composeEng");
+});
+app.post("/composeEng", function (req, res) {
+
+    const postEng = new PostEng({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    postEng.save(function (err) {
+        if (!err) {
+            res.redirect("/engineer");
+        }
+    });
+
+})
 
 
 
 // -----------------render Every Stream Page-----------------
 // In home page we must try to find all the posts and then render home page
 app.get("/", function (req, res) {
-    Post.find({}, function (err, posts) {
-        res.render("index", {
-            posts: posts
+        res.render("index");
+});
+// Engineering page
+app.get("/engineer", function (req, res) {
+    PostEng.find({}, function (err, postEngs) {
+        res.render("engineer", {
+            postEngs: postEngs
         });
     });
 });
@@ -192,6 +213,13 @@ app.get("/general", function (req, res) {
         });
     });
 });
+app.get("/medical", function (req, res) {
+    PostMed.find({}, function (err, postMeds) {
+        res.render("medical", {
+            postMeds: postMeds
+        });
+    });
+});
 
 
 
@@ -204,8 +232,9 @@ app.get("/posts/:postId", function (req, res) {
             postTitle: post.postTitle,
             postDetails: post.postDetails,
             postEligibility: post.postEligibility,
-            postHowToApply: post.postHowToApply,
-            postExpectedSalary: post.postExpectedSalary
+            postAdmission: post.postAdmission,
+            postScope: post.postScope,
+            postJob: post.postJob
         });
     });
 
@@ -264,6 +293,21 @@ app.get("/postGens/:postId", function (req, res) {
     const reqId = req.params.postId;
     PostGen.findOne({ _id: reqId }, function (err, post) {
         res.render("postGens", {
+            postTitle: post.postTitle,
+            postDetails: post.postDetails,
+            postEligibility: post.postEligibility,
+            postAdmission: post.postAdmission,
+            postScope: post.postScope,
+            postJob: post.postJob
+        });
+    });
+
+});
+app.get("/postMeds/:postId", function (req, res) {
+    // we use id for access all new post in single page
+    const reqPId = req.params.postId;
+    PostMed.findOne({ _id: reqPId }, function (err, post) {
+        res.render("postMeds", {
             postTitle: post.postTitle,
             postDetails: post.postDetails,
             postEligibility: post.postEligibility,
