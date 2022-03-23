@@ -224,11 +224,11 @@ app.get("/medical", function (req, res) {
 
 
 //----------------- Code for getting every post as a single Page-----------------
-app.get("/posts/:postId", function (req, res) {
+app.get("/postEngs/:postId", function (req, res) {
     // we use id for access all new post in single page
     const requestedPostId = req.params.postId;
-    Post.findOne({ _id: requestedPostId }, function (err, post) {
-        res.render("post", {
+    PostEng.findOne({ _id: requestedPostId }, function (err, post) {
+        res.render("postEngs", {
             postTitle: post.postTitle,
             postDetails: post.postDetails,
             postEligibility: post.postEligibility,
