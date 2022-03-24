@@ -220,6 +220,10 @@ app.get("/medical", function (req, res) {
         });
     });
 });
+app.get("/aboutUs", function (req, res) {
+    
+        res.render("aboutUs");
+});
 
 
 
