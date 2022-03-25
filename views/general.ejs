@@ -1,5 +1,5 @@
 <%- include("partial/header") -%>
-    <<div class="header">
+    <div class="header">
         <h1>General</h1>
         <p>Some Quotation</p>
     </div>
@@ -8,47 +8,60 @@
             <button type="submit" class="button"><a href="/composeGen" style="color:white;"> Compose New</a></button>
         </div>
         <% if (Array.isArray(postGens)) {%>
-                <% postGens.forEach(function(post){ %>
-                    <a href="/postGens/<%=post._id%>">
-                        <h1>
-                            <%=post.postTitle %>
-                        </h1>
-                    </a>
-                    <h3>
-                        Detail’s:
-                    </h3>
-                    <p>
+            <% postGens.forEach(function(post){ %>
+                <% if(post.postTitle.length>=3 && post.postDetails.length>=3  && post.postEligibility.length>=3  && post.postAdmission.length>=3 && post.postScope.length>=3  && post.postJob.length>=3){ %>
+                <a href="/postGens/<%=post._id%>">
+                    <h1>
+                        <%=post.postTitle %>
+                    </h1>
+                </a>
+                <h3>
+                    Detail’s:
+                </h3>
+                <p>
+                    <%if(post.postDetails.length >=200){%>
                         <%=post.postDetails.substring(0,200) %>
                         <a href="/postGens/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        Eligibility:
-                    </h3>
-                    <p>
+                        <% }else{%>
+                        <%=post.postDetails %>
+                        <% }%>
+                    
+                </p>
+                <h3>
+                    Eligibility:
+                </h3>
+                <p>
+                    <%if(post.postEligibility.length >=200){%>
                         <%=post.postEligibility.substring(0,200) %>
                         <a href="/postGens/<%=post._id%>">Read More...</a>
-                    </p>
-                    <h3>
-                        Admission:
-                    </h3>
-                    <p>
-                        <%=post.postAdmission.substring(0,200) %>
-                    </p>
-                    <h3>
-                        Scope:
-                    </h3>
-                    <p>
-                        <%=post.postScope.substring(0,200) %>
-                    </p>
-                    <h3>
-                        Job:
-                    </h3>
-                    <p class="last">
-                        <%=post.postJob.substring(0,200) %>
+                        <% }else{%>
+                        <%=post.postEligibility %>
+                        <% }%>
+                </p>
+                <h3>
+                    Admission:
+                </h3>
+                <p>
+                    <%=post.postAdmission.substring(0,200) %>
+                </p>
+                <h3>
+                    Scope:
+                </h3>
+                <p>
+                    <%=post.postScope.substring(0,200) %>
+                </p>
+                <h3>
+                    Job:
+                </h3>
+                <p class="last">
+                    <%=post.postJob.substring(0,200) %>
                         <a href="/postGens/<%=post._id%>">Read More...</a>
-                    </p>
-        
-                    <%});} %>
-        
-            </div>
-            <%- include("partial/footer") -%>
+                </p>
+
+                <% }%>
+                
+
+                <%});}  %>
+
+    </div>
+    <%- include("partial/footer") -%>

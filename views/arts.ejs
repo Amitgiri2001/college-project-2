@@ -9,6 +9,7 @@
         </div>
         <% if (Array.isArray(postArts)) {%>
             <% postArts.forEach(function(post){ %>
+                <% if(post.postTitle.length>=3 && post.postDetails.length>=3  && post.postEligibility.length>=3  && post.postAdmission.length>=3 && post.postScope.length>=3  && post.postJob.length>=3){ %>
                 <a href="/postArts/<%=post._id%>">
                     <h1>
                         <%=post.postTitle %>
@@ -18,15 +19,24 @@
                     Detail’s:
                 </h3>
                 <p>
-                    <%=post.postDetails.substring(0,200) %>
+                    <%if(post.postDetails.length >=200){%>
+                        <%=post.postDetails.substring(0,200) %>
                         <a href="/postArts/<%=post._id%>">Read More...</a>
+                        <% }else{%>
+                        <%=post.postDetails %>
+                        <% }%>
+                    
                 </p>
                 <h3>
                     Eligibility:
                 </h3>
                 <p>
-                    <%=post.postEligibility.substring(0,200) %>
+                    <%if(post.postEligibility.length >=200){%>
+                        <%=post.postEligibility.substring(0,200) %>
                         <a href="/postArts/<%=post._id%>">Read More...</a>
+                        <% }else{%>
+                        <%=post.postEligibility %>
+                        <% }%>
                 </p>
                 <h3>
                     Admission:
@@ -48,7 +58,10 @@
                         <a href="/postArts/<%=post._id%>">Read More...</a>
                 </p>
 
-                <%});} %>
+                <% }%>
+                
+
+                <%});}  %>
 
     </div>
     <%- include("partial/footer") -%>

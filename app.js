@@ -1,22 +1,35 @@
+// Create one framework of Node.js that is express
 const express = require('express');
+
+// Create body-parser constant for req anything from body
 const bodyParser = require('body-parser');
+
+// We use ejs for Add Dynamic content in our different pages
 const ejs = require("ejs");
+
+// We use MongoDB as our database so we use mongoose library for simple and easy code
 const mongoose = require("mongoose");
-// use lodash for links
+
+// use lodash for links acceptance
 var _ = require('lodash');
+
 // connect mongoDb wit mongoose
 mongoose.connect("mongodb+srv://admin-amit:Admin-2022@cluster0.vcyqt.mongodb.net/project?retryWrites=true&w=majority", { useNewUrlParser: true });
 
 // create app
 const app = express();
+
 // set the ejs as view engine
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // for use public folder only---for style.css and all others
 app.use(express.static(__dirname + '/public'));
 
+let getTitle;
 
+// Create one Schema of our Requested Documents
 const postArtsSchema = {
     postTitle: String,
     postDetails: String,
@@ -25,8 +38,11 @@ const postArtsSchema = {
     postScope: String,
     postJob: String
 }
-// create one mongoose model
 
+
+
+// create one mongoose model
+// mongoose model wants two inputs one is- which model you wants to creates and 2ns is-> according to which schema-
 const PostArt = mongoose.model("PostArt", postArtsSchema);
 const PostSci = mongoose.model("PostSci", postArtsSchema);
 const PostCom = mongoose.model("PostCom", postArtsSchema);
@@ -39,11 +55,12 @@ const PostEng = mongoose.model("PostEng", postArtsSchema);
 // --------------Create every Compose page-----------------
 
 // compose Arts Section
+// When we get "/composeArt" route then we render the composeArt Page ->As simple as that
 app.get("/composeArts", function (req, res) {
     res.render("composeArts");
 });
 app.post("/composeArts", function (req, res) {
-// create one new post with small 'p'--> and it access all the compose form
+    // create one new post with small 'p'--> and it access all the compose form
     const postArt = new PostArt({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
@@ -52,9 +69,9 @@ app.post("/composeArts", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-      // then just simply save the post without any error .
+    // then just simply save the post without any error .
     // and redirect to home page for showing
-        postArt.save(function (err) {
+    postArt.save(function (err) {
         if (!err) {
             res.redirect("/arts");
         }
@@ -168,13 +185,32 @@ app.post("/composeEng", function (req, res) {
 
 })
 
+// for forms
+app.post("/form",function(req,res){
+    getTitle=req.interest;
+    let marksPercentage=req.marksPercentage;
+    console.log(getTitle);
+    console.log(marksPercentage);
+    res.redirect("/medical");
+    
+});
+
 
 
 // -----------------render Every Stream Page-----------------
 // In home page we must try to find all the posts and then render home page
 app.get("/", function (req, res) {
-        res.render("index");
+    res.render("index");
 });
+
+app.get("/form",function(req,res){
+    console.log(getTitle);
+    PostMed.find({}, function (err, postMeds) {
+        res.render("medical", {
+            postMeds: postMeds
+        });
+    });
+})
 // Engineering page
 app.get("/engineer", function (req, res) {
     PostEng.find({}, function (err, postEngs) {
@@ -186,9 +222,12 @@ app.get("/engineer", function (req, res) {
 // Render arts page
 app.get("/arts", function (req, res) {
     PostArt.find({}, function (err, postArts) {
-        res.render("arts", {
-            postArts: postArts
-        });
+        if(!err){
+            res.render("arts", {
+                postArts: postArts
+            }); 
+        }
+        
     });
 });
 // Render Science page
@@ -221,8 +260,8 @@ app.get("/medical", function (req, res) {
     });
 });
 app.get("/aboutUs", function (req, res) {
-    
-        res.render("aboutUs");
+
+    res.render("aboutUs");
 });
 
 
@@ -329,7 +368,7 @@ app.get("/postMeds/:postId", function (req, res) {
 // port setting---------------------
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+    port = 3000;
 }
 
 app.listen(port, function () {
