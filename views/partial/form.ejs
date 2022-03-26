@@ -41,8 +41,16 @@
          <label for="interest">Choose your Interest field from the list:</label>
   <input list="interests" name="interestName" id="interest">
   <datalist id="interests">
-    <option value="Engineering">
-    <option value="Doctor">
+    <% if (Array.isArray(forms)) {%>
+        <% forms.forEach(function(post){ %>
+            
+            <option value="<%= post.postTitle %>">
+
+            
+
+            <%});}  %>
+        </datalist>
+    <!-- <option value="Doctor">
     <option value="Businessman">
     <option value="Government Jobs">
     <option value="Philosopher">
@@ -51,7 +59,7 @@
     <option value="Web Developer">
     <option value="App Developer">
     <option value="Data Scientist">
-  </datalist>
+  </datalist> -->
   <input type="submit">
  
  

@@ -39,7 +39,14 @@ const postArtsSchema = {
     postJob: String
 }
 
-
+const formSchema={
+    postTitle: String,
+    postDetails: String,
+    postEligibility: String,
+    postAdmission: String,
+    postScope: String,
+    postJob: String
+};
 
 // create one mongoose model
 // mongoose model wants two inputs one is- which model you wants to creates and 2ns is-> according to which schema-
@@ -50,6 +57,7 @@ const PostGen = mongoose.model("PostGen", postArtsSchema);
 const PostMed = mongoose.model("PostMed", postArtsSchema);
 const PostEng = mongoose.model("PostEng", postArtsSchema);
 
+const Form=mongoose.model("Form",formSchema);
 
 
 // --------------Create every Compose page-----------------
@@ -69,13 +77,24 @@ app.post("/composeArts", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
     // then just simply save the post without any error .
     // and redirect to home page for showing
+    form.save();
     postArt.save(function (err) {
         if (!err) {
             res.redirect("/arts");
         }
     });
+   
 
 })
 
@@ -93,6 +112,15 @@ app.post("/composeSci", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    form.save();
     postSci.save(function (err) {
         if (!err) {
             res.redirect("/science");
@@ -114,6 +142,15 @@ app.post("/composeCom", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    form.save();
     postCom.save(function (err) {
         if (!err) {
             res.redirect("/commerce");
@@ -135,6 +172,15 @@ app.post("/composeGen", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    form.save();
     postGen.save(function (err) {
         if (!err) {
             res.redirect("/general");
@@ -156,6 +202,15 @@ app.post("/composeMed", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    form.save();
     postMed.save(function (err) {
         if (!err) {
             res.redirect("/medical");
@@ -177,6 +232,15 @@ app.post("/composeEng", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
+    const form=new Form({
+        postTitle: req.body.postTitle,
+        postDetails: req.body.postDetails,
+        postEligibility: req.body.postEligibility,
+        postAdmission: req.body.postAdmission,
+        postScope: req.body.postScope,
+        postJob: req.body.postJob
+    });
+    form.save();
     postEng.save(function (err) {
         if (!err) {
             res.redirect("/engineer");
@@ -187,11 +251,23 @@ app.post("/composeEng", function (req, res) {
 
 // for forms
 app.post("/form",function(req,res){
-    getTitle=req.interest;
-    let marksPercentage=req.marksPercentage;
-    console.log(getTitle);
-    console.log(marksPercentage);
-    res.redirect("/medical");
+    // getTitle=req.interestName;
+    // console.log(getTitle);
+    
+    // res.redirect("/medical");
+
+    console.log(req.body.interestName);
+    // console.log(res);
+    Form.findOne({postTitle:req.body.interestName}, function (err, post) {
+        res.render("postScis", {
+            postTitle: post.postTitle,
+            postDetails: post.postDetails,
+            postEligibility: post.postEligibility,
+            postAdmission: post.postAdmission,
+            postScope: post.postScope,
+            postJob: post.postJob
+        });
+    });
     
 });
 
@@ -200,17 +276,24 @@ app.post("/form",function(req,res){
 // -----------------render Every Stream Page-----------------
 // In home page we must try to find all the posts and then render home page
 app.get("/", function (req, res) {
-    res.render("index");
-});
-
-app.get("/form",function(req,res){
-    console.log(getTitle);
-    PostMed.find({}, function (err, postMeds) {
-        res.render("medical", {
-            postMeds: postMeds
+    Form.find({}, function (err, forms) {
+        res.render("index", {
+            forms: forms
         });
     });
-})
+});
+
+
+
+
+// app.get("/form",function(req,res){
+//     // console.log(getTitle);
+//     PostMed.find({}, function (err, postMeds) {
+//         res.render("medical", {
+//             postMeds: postMeds
+//         });
+//     });
+// })
 // Engineering page
 app.get("/engineer", function (req, res) {
     PostEng.find({}, function (err, postEngs) {
