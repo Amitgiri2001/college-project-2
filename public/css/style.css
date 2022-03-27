@@ -155,6 +155,7 @@ a.navbar-brand {
 }
 .newItems p {
   padding: 0% 5%;
+  color: #2c2b2b;
 }
 .newItems a:link{
   text-decoration: none;
@@ -172,6 +173,10 @@ a.navbar-brand {
     margin: 5% 14%;
     margin-top: 12%;
   }
+  .newItems h2{
+    font-size: 28px;
+    font-weight: bold;
+   }
   .newItems h3{
     font-size: 28px;
     font-weight: bold;
@@ -186,8 +191,12 @@ a.navbar-brand {
     font-size: 28px;
      padding: 3%;
    }
+  .newItems h2{
+    font-size: 17px;
+    font-weight: bold;
+   }
   .newItems h3{
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
    }
 }
