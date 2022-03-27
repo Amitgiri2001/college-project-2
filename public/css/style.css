@@ -611,7 +611,10 @@ li.first-li{
   .form-container {
     padding: 80px 30px;
 }
-
+.block{
+  width: 100%;
+  height: 100%;
+}
   
 }
 
