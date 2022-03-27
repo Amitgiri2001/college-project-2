@@ -39,12 +39,13 @@
              
          </div>
          <label for="interest">Choose your Interest field from the list:</label>
-  <input list="interests" name="interestName" id="interest">
+  <input list="interests" name="interestName" id="interest" autocomplete="false">
   <datalist id="interests">
     <% if (Array.isArray(forms)) {%>
         <% forms.forEach(function(post){ %>
 
-            <!-- <option value="<%= post.postTitle %>"> -->
+            <option value="<%= post.postTitle %> ">
+
 
             <%});}  %>
         </datalist>
