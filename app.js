@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // for use public folder only---for style.css and all others
 app.use(express.static(__dirname + '/public'));
 
-let getTitle;
 
 // Create one Schema of our Requested Documents
+// schema is a object with key value pair
 const postArtsSchema = {
     postTitle: String,
     postDetails: String,
@@ -249,15 +249,21 @@ app.post("/composeEng", function (req, res) {
 
 })
 
+
+
+
+
+
+
+
+
+
+
 // for forms---------------------------------------
 //----------------------------------------------------
-
-
-
 app.post("/form", function (req, res) {
     let request=_.upperCase(req.body.interestName);
     Form.findOne({postTitle:request  }, function (err, post) {
-       
         if (!err) {
             res.render("postScis", {
                 postTitle: post.postTitle,
@@ -269,6 +275,8 @@ app.post("/form", function (req, res) {
             });
         }
     });
+    
+
 
 });
 

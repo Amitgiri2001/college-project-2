@@ -172,8 +172,9 @@ a.navbar-brand {
     margin: 5% 14%;
     margin-top: 12%;
   }
-  .newItems h2{
+  .newItems h3{
     font-size: 28px;
+    font-weight: bold;
    }
 }
 @media (max-width:970px) {
@@ -185,8 +186,9 @@ a.navbar-brand {
     font-size: 28px;
      padding: 3%;
    }
-  .newItems h2{
+  .newItems h3{
     font-size: 18px;
+    font-weight: bold;
    }
 }
 
