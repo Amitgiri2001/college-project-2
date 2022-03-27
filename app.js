@@ -259,7 +259,7 @@ app.post("/form",function(req,res){
     console.log(req.body.interestName);
     // console.log(res);
     Form.findOne({postTitle:req.body.interestName}, function (err, post) {
-        console.log(post);
+        // console.log(post);
         res.render("postScis", {
             postTitle: post.postTitle,
             postDetails: post.postDetails,
