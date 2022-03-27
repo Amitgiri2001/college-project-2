@@ -251,13 +251,6 @@ app.post("/composeEng", function (req, res) {
 
 // for forms
 app.post("/form",function(req,res){
-    // getTitle=req.interestName;
-    // console.log(getTitle);
-    
-    // res.redirect("/medical");
-
-    console.log(req.body.interestName);
-    // console.log(res);
     Form.findOne({postTitle:req.body.interestName}, function (err, post) {
         // console.log(post);
         res.render("postScis", {
@@ -285,16 +278,6 @@ app.get("/", function (req, res) {
 });
 
 
-
-
-// app.get("/form",function(req,res){
-//     // console.log(getTitle);
-//     PostMed.find({}, function (err, postMeds) {
-//         res.render("medical", {
-//             postMeds: postMeds
-//         });
-//     });
-// })
 // Engineering page
 app.get("/engineer", function (req, res) {
     PostEng.find({}, function (err, postEngs) {
