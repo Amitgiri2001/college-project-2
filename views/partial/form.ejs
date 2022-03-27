@@ -2,68 +2,75 @@
 <div class="form-container">
     <div class="container" id="form">
         <form name="myform" action="/form" method="post">
-         <div class="headings_form text-center"><h1>Career Guide</h1></div>
-         <div class="form-row">
-             <div class="form-group col-md-6 " >
-                 <label for="inputFirstName" name="ffname">First Name</label>
-                 <input type="text" class="form-control" id="inputFirstName" placeholder="Enter Your First Name" required>
-             </div>
-             <div class="form-group col-md-6">
-                 <label for="inputlastName">Last Name</label>
-                 <input type="text" class="form-control" id="inputLastName" placeholder="Enter Your last Name" required>
-             </div>
-             <div class="form-group col-md-6">
-                 <label for="inputEmail4">Email</label>
-                 <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
-             </div>
-             <div class="form-group col-md-6">
-                 <label for="inputMobile">Mobile No:</label>
-                 <input type="number" class="form-control" id="inputMobile" placeholder="Enter Your Mobile No" required>
-             </div>
-         </div>
- 
-         <div class="form-group">
-             <label for="inputAddress">Current Course/Current Passing Course</label>
-             <input type="text" class="form-control" id="inputAddress" placeholder="Enter Your Current Course or Current Passing Course" >
-         </div>
-         <div class="form-row">
-             <div class="form-group col-md-6">
-                 <label for="inputCity">Previous Year total Obtain Marks</label>
-                 <input type="number" class="form-control" id="inputCity" placeholder="Total Marks obtain in last exam" >
-             </div>
-             <div class="form-group col-md-6">
-                 <label for="inputState">Percentage</label>
-                 <input type="number" class="form-control" id="inputState" required placeholder="Overall percentage obtain" name="marksPercentage">
+            <div class="headings_form text-center">
+                <h1>Career Guide</h1>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <label for="inputFirstName" name="ffname">First Name:</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="Enter Your First Name"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputlastName">Last Name:</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Enter Your last Name"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email:</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputMobile">Mobile No(Not Mandatory):</label>
+                    <input type="number" class="form-control" id="inputMobile" placeholder="Enter Your Mobile No"
+                        >
+                </div>
+            </div>
 
-             </div>
-             
-         </div>
-         <label for="interestName">Choose your Interest field from the list:</label>
-  <!-- <input list="interests" name="interestName" id="interest" autocomplete="false">
+            <div class="form-group">
+                <label for="inputAddress">Current Course/Current Passing Course:</label>
+                <input type="text" class="form-control" id="inputAddress"
+                    placeholder="Enter Your Current Course or Current Passing Course" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Previous Year total Obtain Marks(Not Mandatory):</label>
+                    <input type="number" class="form-control" id="inputCity"
+                        placeholder="Total Marks obtain in last exam">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputState">Percentage:</label>
+                    <input type="number" class="form-control" id="inputState" required
+                        placeholder="Overall percentage obtain" name="marksPercentage">
+
+                </div>
+
+            </div>
+            <label for="interestName">Choose your Interest field from the list:(*Mandatory)</label>
+            <!-- <input list="interests" name="interestName" id="interest" autocomplete="false">
   <datalist id="interests"> -->
 
-    <select name="interestName" id="interestName">
-    <% if (Array.isArray(forms)) {%>
-        <% forms.forEach(function(post){ %>
+            <select name="interestName" id="interestName">
+                <% if (Array.isArray(forms)) {%>
+                    <% forms.forEach(function(post){ %>
 
-            <option value="<%= post.postTitle %> "><%= post.postTitle %></option>
+                        <option value="<%= post.postTitle %> ">
+                            <%= post.postTitle %>
+                        </option>
 
 
-            <%});}  %>
-        </select>
-  <!-- <input type="submit"> -->
- 
- 
-         
-  <br>
-  <br>
- 
- 
-         <button type="submit" id="myBtn" class="btn sign btn-primary">Let's Guided</button>
-         <p id="demo"></p>
-         <input type="reset" value="Reset">
- 
- 
-     </form>
- </div>
- </div>
+                        <%});} %>
+            </select>
+            <!-- <input type="submit"> -->
+
+            <br>
+            <br>
+
+            <button type="submit" id="myBtn" class="btn sign btn-primary">Let's Guided</button>
+            <p id="demo"></p>
+            <input type="reset" value="Reset">
+
+
+        </form>
+    </div>
+</div>

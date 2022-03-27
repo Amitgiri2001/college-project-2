@@ -140,8 +140,45 @@ a.navbar-brand {
   margin: 5% 14%;
   margin-top: 8%;
 }
+.newItems h1{
+ color: #f87652;
+  text-align: center;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  background-color: rgb(41, 250, 187);
+}
+.newItems a:link{
+  text-decoration: none;
+}
+.newItems a:hover{
+  text-decoration: none;
+  color: #f87652;
+}
 .newItems p.last {
   margin-bottom: 7rem;
+}
+@media (max-width:1400px) {
+
+  .newItems {
+    margin: 5% 14%;
+    margin-top: 12%;
+  }
+  .newItems h2{
+    font-size: 28px;
+   }
+}
+@media (max-width:970px) {
+
+  .newItems {
+    margin-top: 20%;
+  }
+  .newItems h1{
+    font-size: 28px;
+     padding: 3%;
+   }
+  .newItems h2{
+    font-size: 18px;
+   }
 }
 
 /* ---------headings of every stream page----------- */
