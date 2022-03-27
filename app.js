@@ -39,7 +39,7 @@ const postArtsSchema = {
     postJob: String
 }
 
-const formSchema={
+const formSchema = {
     postTitle: String,
     postDetails: String,
     postEligibility: String,
@@ -57,7 +57,7 @@ const PostGen = mongoose.model("PostGen", postArtsSchema);
 const PostMed = mongoose.model("PostMed", postArtsSchema);
 const PostEng = mongoose.model("PostEng", postArtsSchema);
 
-const Form=mongoose.model("Form",formSchema);
+const Form = mongoose.model("Form", formSchema);
 
 
 // --------------Create every Compose page-----------------
@@ -78,7 +78,7 @@ app.post("/composeArts", function (req, res) {
         postJob: req.body.postJob
     });
 
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -94,7 +94,7 @@ app.post("/composeArts", function (req, res) {
             res.redirect("/arts");
         }
     });
-   
+
 
 })
 
@@ -112,7 +112,7 @@ app.post("/composeSci", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -142,7 +142,7 @@ app.post("/composeCom", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -172,7 +172,7 @@ app.post("/composeGen", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -202,7 +202,7 @@ app.post("/composeMed", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -232,7 +232,7 @@ app.post("/composeEng", function (req, res) {
         postScope: req.body.postScope,
         postJob: req.body.postJob
     });
-    const form=new Form({
+    const form = new Form({
         postTitle: req.body.postTitle,
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
@@ -249,20 +249,30 @@ app.post("/composeEng", function (req, res) {
 
 })
 
-// for forms
-app.post("/form",function(req,res){
-    Form.findOne({postTitle:req.body.interestName}, function (err, post) {
-        // console.log(post);
-        res.render("postScis", {
-            postTitle: post.postTitle,
-            postDetails: post.postDetails,
-            postEligibility: post.postEligibility,
-            postAdmission: post.postAdmission,
-            postScope: post.postScope,
-            postJob: post.postJob
-        });
+// for forms---------------------------------------
+//----------------------------------------------------
+
+
+
+app.post("/form", function (req, res) {
+    Form.findOne({ postTitle: req.body.interestName }, function (err, post) {
+        // console.log(post)
+        // if(err || post.postTitle==null || post.postDetails==null || post.postEligibility==null || post.postAdmission==null || post.postScope==null || post.postJob==null){
+        //     res.render("/");
+        // }
+        // else
+        if (!err) {
+            res.render("postScis", {
+                postTitle: post.postTitle,
+                postDetails: post.postDetails,
+                postEligibility: post.postEligibility,
+                postAdmission: post.postAdmission,
+                postScope: post.postScope,
+                postJob: post.postJob
+            });
+        }
     });
-    
+
 });
 
 
@@ -289,12 +299,12 @@ app.get("/engineer", function (req, res) {
 // Render arts page
 app.get("/arts", function (req, res) {
     PostArt.find({}, function (err, postArts) {
-        if(!err){
+        if (!err) {
             res.render("arts", {
                 postArts: postArts
-            }); 
+            });
         }
-        
+
     });
 });
 // Render Science page
