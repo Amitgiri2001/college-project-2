@@ -38,18 +38,20 @@
              </div>
              
          </div>
-         <label for="interest">Choose your Interest field from the list:</label>
-  <input list="interests" name="interestName" id="interest" autocomplete="false">
-  <datalist id="interests">
+         <label for="interestName">Choose your Interest field from the list:</label>
+  <!-- <input list="interests" name="interestName" id="interest" autocomplete="false">
+  <datalist id="interests"> -->
+
+    <select name="interestName" id="interestName">
     <% if (Array.isArray(forms)) {%>
         <% forms.forEach(function(post){ %>
 
-            <option value="<%= post.postTitle %> ">
+            <option value="<%= post.postTitle %> "><%= post.postTitle %></option>
 
 
             <%});}  %>
-        </datalist>
-  <input type="submit">
+        </select>
+  <!-- <input type="submit"> -->
  
  
          

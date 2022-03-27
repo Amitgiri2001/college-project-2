@@ -79,7 +79,7 @@ app.post("/composeArts", function (req, res) {
     });
 
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -113,7 +113,7 @@ app.post("/composeSci", function (req, res) {
         postJob: req.body.postJob
     });
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -143,7 +143,7 @@ app.post("/composeCom", function (req, res) {
         postJob: req.body.postJob
     });
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -173,7 +173,7 @@ app.post("/composeGen", function (req, res) {
         postJob: req.body.postJob
     });
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -203,7 +203,7 @@ app.post("/composeMed", function (req, res) {
         postJob: req.body.postJob
     });
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -233,7 +233,7 @@ app.post("/composeEng", function (req, res) {
         postJob: req.body.postJob
     });
     const form = new Form({
-        postTitle: req.body.postTitle,
+        postTitle: _.upperCase(req.body.postTitle),
         postDetails: req.body.postDetails,
         postEligibility: req.body.postEligibility,
         postAdmission: req.body.postAdmission,
@@ -255,12 +255,9 @@ app.post("/composeEng", function (req, res) {
 
 
 app.post("/form", function (req, res) {
-    Form.findOne({ postTitle: req.body.interestName }, function (err, post) {
-        // console.log(post)
-        // if(err || post.postTitle==null || post.postDetails==null || post.postEligibility==null || post.postAdmission==null || post.postScope==null || post.postJob==null){
-        //     res.render("/");
-        // }
-        // else
+    let request=_.upperCase(req.body.interestName);
+    Form.findOne({postTitle:request  }, function (err, post) {
+       
         if (!err) {
             res.render("postScis", {
                 postTitle: post.postTitle,
