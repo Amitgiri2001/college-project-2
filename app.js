@@ -28,9 +28,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 
+
 // Create one Schema of our Requested Documents
 // schema is a object with key value pair
-const postArtsSchema = {
+const postArtsSchema = { 
     postTitle: String,
     postDetails: String,
     postEligibility: String,
