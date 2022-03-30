@@ -530,7 +530,7 @@ li.first-li{
 
 
 /* ---------------Styling for lesser width device than laptop----------------------- */
-@media (max-width: 1600px) {
+@media (max-width: 1750px) {
   .card-headings{
     margin-top: 1rem;
   }
