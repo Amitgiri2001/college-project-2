@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 var _ = require('lodash');
 
 // connect mongoDb wit mongoose
-mongoose.connect("mongodb+srv://admin-amit:Admin-2022@cluster0.vcyqt.mongodb.net/project?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://admin-amit:AmitGiri2001@cluster0.vcyqt.mongodb.net/project?retryWrites=true&w=majority", { useNewUrlParser: true });
 
 // create app
 const app = express();
